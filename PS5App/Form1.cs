@@ -51,6 +51,12 @@ namespace PS5App
         {
             return Target.HostName;
         }
+        static string getString(char[] arr)
+        {
+            string s = new string(arr);
+
+            return s;
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             AddTarget(textBox1.Text);
@@ -59,25 +65,25 @@ namespace PS5App
             }
             if (Connect())
             {
+                label3.Text = Target.HostName;
+                label4.Text = Target.ConnectionInfo.CurrentOwner;
+                toolStripStatusLabel5.Text = Target.Attributes.DevkitType.ToString();
+                toolStripStatusLabel5.ForeColor = Color.Green;
+                toolStripStatusLabel8.Text = "" + Target.Attributes.SdkVersionString;
+                toolStripStatusLabel8.ForeColor = Color.Green;
+                button2.Enabled = true;
+                button3.Enabled = true;
+                button4.Enabled = true;
+                button5.Enabled = true;
+                textBox2.Text = Target.GetFileServingRoot();
                 toolStripStatusLabel2.ForeColor = Color.Green;
                 toolStripStatusLabel2.Text = "Connected";
-                MessageBox.Show("Console Connected", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Console connected !", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
                 MessageBox.Show("An error as occured", "Information", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            label3.Text = Target.HostName;
-            label4.Text = Target.ConnectionInfo.CurrentOwner;
-            toolStripStatusLabel5.Text = Target.Attributes.DevkitType.ToString();
-            toolStripStatusLabel5.ForeColor = Color.Green;
-            toolStripStatusLabel8.Text = "" + Target.Attributes.SdkVersionString;
-            toolStripStatusLabel8.ForeColor = Color.Green;
-            button2.Enabled = true;
-            button3.Enabled = true;
-            button4.Enabled = true;
-            button5.Enabled = true;
-            textBox2.Text  = Target.GetFileServingRoot();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -123,6 +129,7 @@ namespace PS5App
             {
                 textBox2.Text = folderBrowserDialog1.SelectedPath;
                 Target.SetFileServingRoot(textBox2.Text);
+                
             }
             MessageBox.Show("File Serving Root changed", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
