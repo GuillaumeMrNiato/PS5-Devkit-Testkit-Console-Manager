@@ -20,5 +20,10 @@
   <li>Get Owner</li>
   <li>Get Console Type</li>
   <li>Get SDK Version</li>
+  <li>Get File Serving Root</li>
   <li>Set Mode (Release, Assist, Development)</li>
+  <li>Set File Serving Root</li>
 </ul>
+
+
+<img src="https://zupimages.net/up/22/09/cwbq.png">
