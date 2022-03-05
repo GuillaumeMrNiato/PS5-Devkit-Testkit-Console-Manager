@@ -73,7 +73,11 @@ namespace PS5App
             toolStripStatusLabel5.ForeColor = Color.Green;
             toolStripStatusLabel8.Text = "" + Target.Attributes.SdkVersionString;
             toolStripStatusLabel8.ForeColor = Color.Green;
-
+            button2.Enabled = true;
+            button3.Enabled = true;
+            button4.Enabled = true;
+            button5.Enabled = true;
+            textBox2.Text  = Target.GetFileServingRoot();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -90,26 +94,7 @@ namespace PS5App
             {
                 Target.SetReleaseCheckMode(eReleaseCheckMode.RELEASE_CHECK_MODE_DEVELOPMENT_MODE);
             }
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
+            Target.GetFileServingRoot();
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -127,24 +112,19 @@ namespace PS5App
             Target.PowerOff();
         }
 
-        private void toolStripStatusLabel1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
         private void Form1_Load_1(object sender, EventArgs e)
         {
-            
+            Init();
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void button6_Click_1(object sender, EventArgs e)
         {
-          
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            {
+                textBox2.Text = folderBrowserDialog1.SelectedPath;
+                Target.SetFileServingRoot(textBox2.Text);
+            }
+            MessageBox.Show("File Serving Root changed", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
